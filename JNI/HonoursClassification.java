@@ -1,6 +1,6 @@
 import java.util.*;
 class HonoursClassification { 
-/**/	public native void calculateDiploma(); 
+	public native void calculateDiploma(); 
 	public native void calculateDegree();
 	
 	static { 
@@ -30,15 +30,17 @@ class HonoursClassification {
 			System.out.println("\nPlease enter a valid code to select a programme, otherwise enter no to exit");
 			choice = input.nextLine().toLowerCase();
 			
+			// if input is no, then break loop
 			if(choice.compareTo("no") == 0){
 				break;
 			}
 		}
 		
-		/**/if(choice.compareTo("dip") == 0){
+		// if enter "dip" then call native method for calculative diploma CGPA
+		if(choice.compareTo("dip") == 0){
 			hc.calculateDiploma();
 		}
-		else if(choice.compareTo("deg") == 0){
+		else if(choice.compareTo("deg") == 0){	// if enter "deg" then call native method for calculative degree CGPA
 			hc.calculateDegree();
 		}
 		

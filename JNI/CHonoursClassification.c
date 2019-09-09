@@ -15,15 +15,15 @@ JNIEXPORT void JNICALL Java_HonoursClassification_calculateDiploma(JNIEnv *env, 
 	printf("|   Pass                                    |   2.00 - 2.99   |\n");
 	printf("---------------------------------------------------------------\n");
 
-	do{
+	do{	// enter CGPA and loop if invalid input, enter -1 to exit
 		printf("\nPlease enter a valid CGPA or enter -1 to exit: ");
 		scanf("%f", &cgpa);
 		
-		if(cgpa == -1){
+		if(cgpa == -1){	// break loop if user entered -1
 			break;
 		}
 	
-		cgpaTwoDP = roundf(100 * cgpa) / 100;
+		cgpaTwoDP = roundf(100 * cgpa) / 100;	// get the rounded two decimal place float
 		
 		if(cgpaTwoDP >= 2.00 && cgpaTwoDP <= 2.99)
 			strcpy(classHons, "Pass");
@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_HonoursClassification_calculateDiploma(JNIEnv *env, 
 		}
 	}while(strcmp(classHons, "Invalid") == 0);
 	
-	if(cgpa != -1){
+	if(cgpa != -1){	// if no input and user chooses to exit, then no result displayed. Otherwise, display classification with CGPA
 		printf("\n---------------------------------------------\n");
 		printf("|   Classification of Honours (Diploma)     | %s\n", classHons);
 		printf("|-------------------------------------------|\n");
@@ -61,15 +61,15 @@ JNIEXPORT void JNICALL Java_HonoursClassification_calculateDegree(JNIEnv *env, j
 	printf("---------------------------------------------------------------\n");
 	
 	
-	do{
+	do{	// enter CGPA and loop if invalid input, enter -1 to exit
 		printf("\nPlease enter a valid CGPA or enter -1 to exit: ");
 		scanf("%f", &cgpa);
 		
-		if(cgpa == -1){
+		if(cgpa == -1){	// break loop if user entered -1
 			break;
 		}
 	
-		cgpaTwoDP = roundf(100 * cgpa) / 100;
+		cgpaTwoDP = roundf(100 * cgpa) / 100;	// get the rounded two decimal place float
 		
 		if(cgpaTwoDP >= 2.00 && cgpaTwoDP <= 2.66)
 			strcpy(classHons, "Third");
@@ -84,7 +84,7 @@ JNIEXPORT void JNICALL Java_HonoursClassification_calculateDegree(JNIEnv *env, j
 		}
 	}while(strcmp(classHons, "Invalid") == 0);
 	
-	if(cgpa != -1){
+	if(cgpa != -1){	// if no input and user chooses to exit, then no result displayed. Otherwise, display classification with CGPA
 		printf("\n---------------------------------------------\n");
 		printf("|   Classification of Honours (Degree)      | %s\n", classHons);
 		printf("|-------------------------------------------|\n");
