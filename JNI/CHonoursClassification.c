@@ -15,27 +15,34 @@ JNIEXPORT void JNICALL Java_HonoursClassification_calculateDiploma(JNIEnv *env, 
 	printf("|   Pass                                    |   2.00 - 2.99   |\n");
 	printf("---------------------------------------------------------------\n");
 
-	printf("\nPlease enter your CGPA: ");
-	scanf("%f", &cgpa);
+	do{
+		printf("\nPlease enter a valid CGPA or enter -1 to exit: ");
+		scanf("%f", &cgpa);
+		
+		if(cgpa == -1){
+			break;
+		}
 	
-	cgpaTwoDP = roundf(100 * cgpa) / 100;
+		cgpaTwoDP = roundf(100 * cgpa) / 100;
+		
+		if(cgpaTwoDP >= 2.00 && cgpaTwoDP <= 2.99)
+			strcpy(classHons, "Pass");
+		else if(cgpaTwoDP >= 3.0 && cgpaTwoDP < 3.49)
+			strcpy(classHons, "Credit");
+		else if(cgpaTwoDP >= 3.50 && cgpaTwoDP <= 4.00)
+			strcpy(classHons, "Distinction");
+		else{
+			strcpy(classHons, "Invalid");
+		}
+	}while(strcmp(classHons, "Invalid") == 0);
 	
-	if( cgpaTwoDP >= 2.00 && cgpaTwoDP <= 2.99 )
-		strcpy(classHons, "Pass");
-	else if(cgpaTwoDP >= 3.0 && cgpaTwoDP < 3.49)
-		strcpy(classHons, "Credit");
-	else if(cgpaTwoDP >= 3.50 && cgpaTwoDP <= 4.00)
-		strcpy(classHons, "Distinction");
-	else{
-		strcpy(classHons, "Invalid");
-		printf("\nInvalid CGPA");
+	if(cgpa != -1){
+		printf("\n---------------------------------------------\n");
+		printf("|   Classification of Honours (Diploma)     | %s\n", classHons);
+		printf("|-------------------------------------------|\n");
+		printf("|   Your CGPA                               | %.2f\n", cgpa);
+		printf("---------------------------------------------\n");
 	}
-	
-	printf("\n---------------------------------------------\n");
-	printf("|   Classification of Honours (Diploma)     | %s\n", classHons);
-	printf("|-------------------------------------------|\n");
-	printf("|   Your CGPA                               | %.2f\n", cgpa);
-	printf("---------------------------------------------\n");
 	
 	return; 
 }
