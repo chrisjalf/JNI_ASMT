@@ -16,16 +16,16 @@ JNIEXPORT jintArray JNICALL Java_ArrayMinMax_displayResult(JNIEnv *env, jobject 
 	
 	srand(time(0));
 	
-	for(i = 0; i < len; i++){
+	for(i = 0; i < len; i++){	// get random number(s) and store in array
 		randNum = rand() % 100 + 1;
 		printf("%d ", randNum);
 		if(randNum < 50){
-			count++;
+			count++;	// get count for integers lesser than 50
 		}
 		arrRN[i] = randNum;
 	}
 	
-	(*env)->SetIntArrayRegion(env, arrayRandNum, 0, len, arrRN);
+	(*env)->SetIntArrayRegion(env, arrayRandNum, 0, len, arrRN);	// copy array arrRN into array arrayRandNum
 	
 	printf("\nNumber of integer lesser than 50 in array: %d", count);
 	return arrayRandNum;
@@ -36,14 +36,14 @@ JNIEXPORT jint JNICALL Java_ArrayMinMax_displayDifference(JNIEnv *env, jobject o
 	jsize len = (*env)->GetArrayLength(env, arrayRandNum);
 	jint *arrCopy = (*env)->GetIntArrayElements(env, arrayRandNum, 0); 
 	
-	for(i = 0; i < len; i++){	// loop to find max
+	for(i = 0; i < len; i++){	// loop to find max number
 		if(arrCopy[i] > max){
 			max = arrCopy[i];
 			min = max;
 		}
 	}
 	
-	for(i = 0; i < len; i++){	// loop to find min
+	for(i = 0; i < len; i++){	// loop to find min number
 		if(arrCopy[i] < min){
 			min = arrCopy[i];
 		}
